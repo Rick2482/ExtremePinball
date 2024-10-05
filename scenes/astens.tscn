@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnkx07848770i"]
+
+[ext_resource type="Script" path="res://scenes/astens.gd" id="1_aw6xa"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e04eq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwflx"]
+size = Vector2(125.5, 20.25)
+
+[sub_resource type="Gradient" id="Gradient_4x73q"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.552962, 1.35969e-06, 4.81307e-07, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dcoo2"]
+gradient = SubResource("Gradient_4x73q")
+
+[node name="Body" type="RigidBody2D"]
+position = Vector2(65, 10)
+disable_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_e04eq")
+gravity_scale = 0.0
+script = ExtResource("1_aw6xa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pwflx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(155, 82.25)
+scale = Vector2(0.5, 23.5)
+texture = SubResource("GradientTexture1D_dcoo2")

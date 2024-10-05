@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyejmhbnf4v7y"]
+[gd_scene load_steps=4 format=3 uid="uid://cyejmhbnf4v7y"]
 
 [ext_resource type="PackedScene" uid="uid://de8gitwjn1n0n" path="res://scenes/ball.tscn" id="2_xmcvt"]
 [ext_resource type="Texture2D" uid="uid://043whpimundb" path="res://pinballimage.jpeg" id="3_p20mg"]
+[ext_resource type="PackedScene" uid="uid://cnkx07848770i" path="res://scenes/astens.tscn" id="3_xr81p"]
 
 [node name="Pinball" type="Node2D"]
 
@@ -13,4 +14,8 @@ texture = ExtResource("3_p20mg")
 [node name="Ball" parent="." instance=ExtResource("2_xmcvt")]
 position = Vector2(392, 190)
 
-[node name="Camera2D" type="Camera2D" parent="Ball"]
+[node name="Astens" parent="." instance=ExtResource("3_xr81p")]
+position = Vector2(497, 319)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(392, 190)
