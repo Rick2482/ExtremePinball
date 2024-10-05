@@ -11,6 +11,31 @@ scale = Vector2(1.89286, 2.22222)
 texture = ExtResource("3_p20mg")
 
 [node name="Ball" parent="." instance=ExtResource("2_xmcvt")]
-position = Vector2(392, 190)
+position = Vector2(418, 85)
 
 [node name="Camera2D" type="Camera2D" parent="Ball"]
+
+[node name="Object" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Object"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Object/StaticBody2D"]
+position = Vector2(-81, 151)
+polygon = PackedVector2Array(400, 485, 499, 579, 501, 621, 393, 619, 334, 619, 314, 620, 360, 308, 431, -155, 437, -218, 820, -219, 848, -53, 946, 620, 755, 620, 755, 580, 806, 533, 842, 560, 820, 227, 796, 223, 798, 252, 789, 257, 764, 229, 752, 214, 748, 149, 749, 130, 778, 58, 782, -4, 763, -64, 734, -99, 716, -113, 708.077, -113, 693, -111, 683, -101, 679, -90, 674, -95, 676, -110, 683, -122, 697, -127, 712, -124, 730, -114, 754, -94, 780, -57, 793, -14, 805, 35, 824, 180, 863, 550, 905, 552, 864, 286, 831, 61, 817, -37, 798, -75, 771, -108, 745, -128, 720, -143, 690, -154, 659, -160, 629, -161, 604, -160, 585, -157, 566, -150, 586, -126, 585, -109, 587, -81, 577, -75, 543, -54, 533, -93, 561, -110, 562, -123, 555, -137, 545, -138, 538, -147, 525, -157, 510, -162, 493, -162, 479, -160, 465, -154, 454, -144, 452, -126, 458, -113, 472, -106, 476, -89, 447, -51, 430, 9, 437, 47, 443, 46, 453, 43, 457, -19, 459, -28, 464, -29, 469, -27, 469, 23, 485, 31, 515, 43, 541, 57, 543, 67, 549, 73, 587, 138, 588, 150, 560, 102, 542, 79, 519, 65, 503, 59, 477, 55, 448, 57, 429, 67, 404, 93, 378, 266, 415, 309, 400, 314, 393, 328, 367, 553, 393, 555)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Object"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Object/StaticBody2D2"]
+position = Vector2(264, -4)
+polygon = PackedVector2Array(418, 501, 380, 633, 429, 594)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Object"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Object/StaticBody2D3"]
+position = Vector2(-36, 53)
+polygon = PackedVector2Array(376, 525, 502, 641, 498, 644, 417, 575, 363, 528, 377, 481)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Object"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Object/StaticBody2D4"]
+polygon = PackedVector2Array(412, 501, 452, 629, 403, 589)
