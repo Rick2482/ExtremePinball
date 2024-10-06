@@ -1,23 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyejmhbnf4v7y"]
+[gd_scene load_steps=5 format=3 uid="uid://cyejmhbnf4v7y"]
 
+[ext_resource type="Texture2D" uid="uid://cinboyc3e28ky" path="res://assets/table.png" id="1_gs4tp"]
 [ext_resource type="PackedScene" uid="uid://de8gitwjn1n0n" path="res://scenes/ball.tscn" id="2_xmcvt"]
-[ext_resource type="Texture2D" uid="uid://043whpimundb" path="res://pinballimage.jpeg" id="3_p20mg"]
 [ext_resource type="PackedScene" uid="uid://cnkx07848770i" path="res://scenes/astens.tscn" id="3_xr81p"]
+[ext_resource type="PackedScene" uid="uid://ra677ah8nqns" path="res://scenes/plunger.tscn" id="4_sjw0w"]
 
 [node name="Pinball" type="Node2D"]
 
-[node name="pinballimag" type="Sprite2D" parent="."]
-position = Vector2(548, 352)
-scale = Vector2(1.89286, 2.22222)
-texture = ExtResource("3_p20mg")
+[node name="Walls" type="RigidBody2D" parent="."]
+freeze = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(856, 1079, 856, 996, 695, 885, 695, 682, 746, 547, 694, 352, 684, 296, 682, 259, 686, 233, 695, 206, 713, 176, 735, 151, 755, 131, 786, 105, 787, 87, 790, 77, 796, 66, 810, 52, 831, 38, 847, 31, 884, 18, 923, 10, 956, 6, 1000, 4, 1053, 7, 1089, 12, 1122, 19, 1158, 30, 1184, 41, 1213, 58, 1228, 69, 1241, 81, 1258, 103, 1266, 120, 1271, 136, 1273, 144, 1274, 155, 1275, 173, 1271, 1079, 1300, 1079, 1300, 1, 673, 1, 672, 1079)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(1056, 1079, 1057, 997, 1220, 886, 1219, 685, 1190, 571, 1224, 462, 1178, 448, 1141, 524, 1125, 520, 1214, 229, 1217, 201, 1215, 177, 1207, 153, 1196, 134, 1174, 111, 1189, 86, 1204, 98, 1217, 112, 1229, 131, 1235, 146, 1238, 158, 1240, 171, 1240, 1079)
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls"]
+position = Vector2(986, 540)
+scale = Vector2(0.7, 0.601563)
+texture = ExtResource("1_gs4tp")
 
 [node name="Ball" parent="." instance=ExtResource("2_xmcvt")]
-position = Vector2(594, 85)
+position = Vector2(1013, 85)
 
-[node name="Astens" parent="." instance=ExtResource("3_xr81p")]
-position = Vector2(443, 598)
+[node name="Left-Astens" parent="." instance=ExtResource("3_xr81p")]
+position = Vector2(823, 1000)
+rotation = 0.523599
+snap_angle = -50
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(576, 324)
+[node name="Right-Astens" parent="." instance=ExtResource("3_xr81p")]
+position = Vector2(1094, 1000)
+rotation = 2.61799
+keycode = "right-astens"
 
-[node name="Culo" type="Node2D" parent="."]
+[node name="Plunger" parent="." instance=ExtResource("4_sjw0w")]
+position = Vector2(1257, 825)
