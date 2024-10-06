@@ -36,3 +36,5 @@ keycode = "right-astens"
 
 [node name="Plunger" parent="." instance=ExtResource("4_sjw0w")]
 position = Vector2(1257, 825)
+
+[node name="Node2D" type="Node2D" parent="."]
