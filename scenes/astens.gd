@@ -1,18 +1,22 @@
 extends Node2D
 
-@export var rotation_speed := 10.0
-@export var max_rotation := 45.0
-@export var min_rotation := -45.0
+@export var keycode = "left-astens"
 
-var is_rotating_left := false
-var is_rotating_right := false
+@export var snap_time = 0.25
+@export var snap_angle = -50
+
+var intermediate_time = 0.0
 
 func _physics_process(delta):
-	if Input.is_action_pressed("left-astens"):
-		if rotation_degrees > min_rotation:
-			self.angular_velocity = -rotation_speed
-	elif Input.is_action_pressed("right-astens"):
-		if rotation_degrees < max_rotation:
-			self.angular_velocity = rotation_speed
+	if Input.is_action_pressed(keycode):
+		if intermediate_time < snap_time:
+			intermediate_time += delta
+			if intermediate_time > snap_time:
+				intermediate_time = snap_time
+			$RigidBody2D.set_rotation_degrees((intermediate_time / snap_time) * snap_angle)
 	else:
-		self.angular_velocity = 0.0
+		if intermediate_time > 0:
+			intermediate_time -= delta
+			if intermediate_time < 0:
+				intermediate_time = 0
+			$RigidBody2D.set_rotation_degrees((intermediate_time / snap_time) * snap_angle)
