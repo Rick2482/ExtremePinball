@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyejmhbnf4v7y"]
+[gd_scene load_steps=10 format=3 uid="uid://cyejmhbnf4v7y"]
 
 [ext_resource type="Texture2D" uid="uid://cinboyc3e28ky" path="res://assets/table.png" id="1_gs4tp"]
 [ext_resource type="Script" path="res://scenes/pinball.gd" id="1_v7hqd"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://ra677ah8nqns" path="res://scenes/plunger.tscn" id="4_sjw0w"]
 [ext_resource type="PackedScene" uid="uid://dremcbjx3e430" path="res://scenes/kicker.tscn" id="5_lyfqn"]
 [ext_resource type="PackedScene" uid="uid://fxp4dtqfu4ww" path="res://scenes/score.tscn" id="6_bcwik"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_fmy54"]
+a = Vector2(198, 2)
+b = Vector2(-10, 2)
 
 [node name="Pinball" type="Node2D"]
 script = ExtResource("1_v7hqd")
@@ -72,6 +76,13 @@ rotation = -0.447008
 position = Vector2(1116, 851)
 rotation = -2.7118
 
+[node name="Exit" type="Area2D" parent="."]
+position = Vector2(0, -7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+position = Vector2(862, 1077)
+shape = SubResource("SegmentShape2D_fmy54")
+
 [node name="BaseUI" type="CanvasLayer" parent="."]
 
 [node name="Score" parent="BaseUI" instance=ExtResource("6_bcwik")]
@@ -85,3 +96,4 @@ offset_bottom = 65.5
 grow_vertical = 2
 
 [connection signal="body_entered" from="Ball" to="." method="_on_ball_body_entered"]
+[connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
