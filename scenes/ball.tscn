@@ -17,6 +17,8 @@ colors = PackedColorArray(1, 1, 1, 1)
 gradient = SubResource("Gradient_hkl22")
 
 [node name="Ball" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 5
 physics_material_override = SubResource("PhysicsMaterial_03q1k")
 continuous_cd = 2
 max_contacts_reported = 1
