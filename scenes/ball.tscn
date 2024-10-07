@@ -1,21 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://de8gitwjn1n0n"]
+[gd_scene load_steps=6 format=3 uid="uid://de8gitwjn1n0n"]
 
-[ext_resource type="Texture2D" uid="uid://bkfmkpeujnib3" path="res://assets/ball.png" id="1_fwjaf"]
+[ext_resource type="Script" path="res://scenes/ball.gd" id="1_rba04"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_03q1k"]
+friction = 0.0
+bounce = 0.1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lrnw1"]
-radius = 28.8444
+radius = 9.0
+
+[sub_resource type="Gradient" id="Gradient_hkl22"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7oslp"]
+gradient = SubResource("Gradient_hkl22")
 
 [node name="Ball" type="RigidBody2D"]
-position = Vector2(492, 209)
 physics_material_override = SubResource("PhysicsMaterial_03q1k")
+continuous_cd = 2
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_rba04")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_lrnw1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2, 0)
-scale = Vector2(0.136111, 0.159259)
-texture = ExtResource("1_fwjaf")
+scale = Vector2(0.0664063, 14.5)
+texture = SubResource("GradientTexture1D_7oslp")

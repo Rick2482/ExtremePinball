@@ -2,8 +2,8 @@ extends Node2D
 
 @export var keycode = "left-astens"
 
-@export var snap_time = 0.25
-@export var snap_angle = -50
+@export var snap_time = 0.05
+@export var snap_angle = 50
 
 var intermediate_time = 0.0
 
