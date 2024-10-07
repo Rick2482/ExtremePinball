@@ -1,27 +1,27 @@
 extends Node2D
 
-@export var max_extension_time: float = 0.3
-@export var temp: float = 1.0
-@export var y_amount: float = 50
+@onready var body: RigidBody2D = $RigidBody2D
 
-var y_position
-var intermediate_time: float = 0.0
+@export var full_extension: float = 80
+@export var pull_time: float = 1.0
+@export var release_time: float = 0.05
 
-func _ready():
-	y_position = global_position.y
+var release_speed = 0.0
 
 func _physics_process(delta):
+	var y = body.get_position().y
 	if Input.is_action_pressed("Shoot"):
-		if intermediate_time <= max_extension_time:      
-			intermediate_time += delta
-			if intermediate_time > max_extension_time:
-				intermediate_time = max_extension_time
-			var y_increment = (intermediate_time / max_extension_time) * y_amount
-			global_position.y = y_position + y_increment
-	else:
-		if intermediate_time > 0.0:
-			intermediate_time -= delta
-			if intermediate_time < 0.0:
-				intermediate_time = 0.0
-			var y_increment = (intermediate_time / temp) * y_amount
-			global_position.y = y_position - y_increment
+		if y < full_extension:
+			y += (full_extension / pull_time) * delta
+			if y > full_extension:
+				y = full_extension
+			body.set_position(Vector2(0, y))
+	else:	
+		if y > 0.0:
+			if release_speed == 0.0:
+				release_speed = y / release_time
+			y -= release_speed * delta
+			if y <= 0.0:
+				y = 0.0
+				release_speed = 0.0
+			body.set_position(Vector2(0, y))
