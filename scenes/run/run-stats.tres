@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="RunStats" load_steps=2 format=3 uid="uid://bteb0gvhd2vow"]
+
+[ext_resource type="Script" path="res://custom-resources/run-stats.gd" id="1_fyhgj"]
+
+[resource]
+script = ExtResource("1_fyhgj")
+score = 0

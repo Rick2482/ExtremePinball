@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://fxp4dtqfu4ww"]
+
+[ext_resource type="Script" path="res://scenes/score.gd" id="1_nbxom"]
+[ext_resource type="Resource" uid="uid://bteb0gvhd2vow" path="res://scenes/run/run-stats.tres" id="2_ynxit"]
+
+[node name="Score" type="Panel"]
+offset_right = 139.0
+offset_bottom = 131.0
+script = ExtResource("1_nbxom")
+run_stats = ExtResource("2_ynxit")
+
+[node name="ScoreText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 94.0
+offset_bottom = 23.0
+text = "Score:"
+horizontal_alignment = 1
+
+[node name="ScoreValue" type="Label" parent="."]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 43.0
+offset_right = 86.0
+offset_bottom = 66.0
+text = "200"
+horizontal_alignment = 1
