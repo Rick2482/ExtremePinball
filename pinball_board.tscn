@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckovt58laq36k"]
+
+[ext_resource type="Texture2D" uid="uid://dxuxddfdp67og" path="res://assets/FlipperBoardV1_Livello 1.png" id="1_5lyyc"]
+[ext_resource type="PackedScene" uid="uid://cnkx07848770i" path="res://scenes/astens.tscn" id="2_fxlhj"]
+[ext_resource type="PackedScene" uid="uid://ra677ah8nqns" path="res://scenes/plunger.tscn" id="3_r1krc"]
+[ext_resource type="PackedScene" uid="uid://de8gitwjn1n0n" path="res://scenes/ball.tscn" id="4_svht4"]
+
+[node name="PinballBoard" type="Node2D"]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/StaticBody2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5lyyc")
+
+[node name="Left-Astens" parent="." instance=ExtResource("2_fxlhj")]
+position = Vector2(-160, 350)
+rotation = 0.523599
+snap_angle = -50
+
+[node name="Right-Astens" parent="." instance=ExtResource("2_fxlhj")]
+position = Vector2(160, 350)
+rotation = 2.61799
+keycode = "right-astens"
+
+[node name="Plunger" parent="." instance=ExtResource("3_r1krc")]
+position = Vector2(370, 458.41)
+scale = Vector2(0.65, 0.65)
+
+[node name="Ball" parent="." instance=ExtResource("4_svht4")]
+position = Vector2(338, 82)

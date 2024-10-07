@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cyejmhbnf4v7y"]
 
 [ext_resource type="Texture2D" uid="uid://cinboyc3e28ky" path="res://assets/table.png" id="1_gs4tp"]
-[ext_resource type="PackedScene" uid="uid://de8gitwjn1n0n" path="res://scenes/ball.tscn" id="2_xmcvt"]
+[ext_resource type="PackedScene" uid="uid://svlowa24ii53" path="res://new_ball.tscn" id="2_lyicd"]
 [ext_resource type="PackedScene" uid="uid://cnkx07848770i" path="res://scenes/astens.tscn" id="3_xr81p"]
 [ext_resource type="PackedScene" uid="uid://ra677ah8nqns" path="res://scenes/plunger.tscn" id="4_sjw0w"]
 
@@ -33,8 +33,8 @@ position = Vector2(986, 540)
 scale = Vector2(0.7, 0.601563)
 texture = ExtResource("1_gs4tp")
 
-[node name="Ball" parent="." instance=ExtResource("2_xmcvt")]
-position = Vector2(1258, 212)
+[node name="NewBall" parent="." instance=ExtResource("2_lyicd")]
+position = Vector2(1256, 900)
 
 [node name="Left-Astens" parent="." instance=ExtResource("3_xr81p")]
 position = Vector2(823, 1000)
