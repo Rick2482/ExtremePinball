@@ -1,23 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyejmhbnf4v7y"]
+[gd_scene load_steps=7 format=3 uid="uid://cyejmhbnf4v7y"]
 
-[ext_resource type="Texture2D" uid="uid://cinboyc3e28ky" path="res://assets/table.png" id="1_gs4tp"]
-[ext_resource type="Script" path="res://scenes/pinball.gd" id="1_v7hqd"]
-[ext_resource type="Resource" uid="uid://bteb0gvhd2vow" path="res://scenes/run/run-stats.tres" id="2_2jr1d"]
-[ext_resource type="PackedScene" uid="uid://de8gitwjn1n0n" path="res://scenes/ball.tscn" id="2_xmcvt"]
-[ext_resource type="PackedScene" uid="uid://cnkx07848770i" path="res://scenes/astens.tscn" id="3_xr81p"]
-[ext_resource type="PackedScene" uid="uid://ra677ah8nqns" path="res://scenes/plunger.tscn" id="4_sjw0w"]
-[ext_resource type="PackedScene" uid="uid://dremcbjx3e430" path="res://scenes/kicker.tscn" id="5_lyfqn"]
-[ext_resource type="PackedScene" uid="uid://fxp4dtqfu4ww" path="res://scenes/score.tscn" id="6_bcwik"]
+[ext_resource type="Script" path="res://scenes/tables/professor_table.gd" id="1_2awdt"]
+[ext_resource type="Texture2D" uid="uid://cinboyc3e28ky" path="res://assets/table.png" id="2_y60af"]
+[ext_resource type="PackedScene" uid="uid://cnkx07848770i" path="res://scenes/astens.tscn" id="3_fao0i"]
+[ext_resource type="PackedScene" uid="uid://ra677ah8nqns" path="res://scenes/plunger.tscn" id="4_olue0"]
+[ext_resource type="PackedScene" uid="uid://dremcbjx3e430" path="res://scenes/kicker.tscn" id="5_ciuba"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_fmy54"]
 a = Vector2(198, 2)
 b = Vector2(-10, 2)
 
-[node name="Pinball" type="Node2D"]
-script = ExtResource("1_v7hqd")
-run_stats = ExtResource("2_2jr1d")
+[node name="ProfessorTable" type="Node2D"]
+script = ExtResource("1_2awdt")
+BALL_SPAWN_POSITION = Vector2(1258, 212)
 
 [node name="Walls" type="RigidBody2D" parent="."]
+collision_mask = 2
 freeze = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
@@ -50,50 +48,39 @@ polygon = PackedVector2Array(1132, 58, 1123, 81, 1139, 88, 1149, 64)
 [node name="Sprite2D" type="Sprite2D" parent="Walls"]
 position = Vector2(986, 540)
 scale = Vector2(0.7, 0.601563)
-texture = ExtResource("1_gs4tp")
+texture = ExtResource("2_y60af")
 
-[node name="Ball" parent="." instance=ExtResource("2_xmcvt")]
-position = Vector2(1258, 212)
-
-[node name="Left-Astens" parent="." instance=ExtResource("3_xr81p")]
+[node name="Left-Astens" parent="." instance=ExtResource("3_fao0i")]
 position = Vector2(823, 1000)
 rotation = 0.523599
 snap_angle = -50
 
-[node name="Right-Astens" parent="." instance=ExtResource("3_xr81p")]
+[node name="Right-Astens" parent="." instance=ExtResource("3_fao0i")]
 position = Vector2(1094, 1000)
 rotation = 2.61799
 keycode = "right-astens"
 
-[node name="Plunger" parent="." instance=ExtResource("4_sjw0w")]
+[node name="Plunger" parent="." instance=ExtResource("4_olue0")]
 position = Vector2(1257, 929)
 
-[node name="Left-Kicker" parent="." instance=ExtResource("5_lyfqn")]
-position = Vector2(797, 851)
-rotation = -0.447008
+[node name="Left-Kicker" parent="." instance=ExtResource("5_ciuba")]
+position = Vector2(792, 847)
+rotation = -0.446986
+freeze_mode = 1
 
-[node name="Right-Kicker" parent="." instance=ExtResource("5_lyfqn")]
-position = Vector2(1116, 851)
-rotation = -2.7118
+[node name="Right-Kicker" parent="." instance=ExtResource("5_ciuba")]
+position = Vector2(1119, 851)
+rotation = -2.69459
 
 [node name="Exit" type="Area2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -1)
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
 position = Vector2(862, 1077)
 shape = SubResource("SegmentShape2D_fmy54")
 
-[node name="BaseUI" type="CanvasLayer" parent="."]
-
-[node name="Score" parent="BaseUI" instance=ExtResource("6_bcwik")]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 509.0
-offset_top = -65.5
-offset_right = 648.0
-offset_bottom = 65.5
-grow_vertical = 2
-
-[connection signal="body_entered" from="Ball" to="." method="_on_ball_body_entered"]
+[connection signal="body_entered" from="Left-Kicker" to="." method="_on_left_kicker_body_entered"]
+[connection signal="body_entered" from="Right-Kicker" to="." method="_on_right_kicker_body_entered"]
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]

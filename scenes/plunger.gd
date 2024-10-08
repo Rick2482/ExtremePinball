@@ -16,7 +16,7 @@ func _physics_process(delta):
 			if y > full_extension:
 				y = full_extension
 			body.set_position(Vector2(0, y))
-	else:	
+	else:
 		if y > 0.0:
 			if release_speed == 0.0:
 				release_speed = y / release_time

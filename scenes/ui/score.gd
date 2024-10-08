@@ -9,5 +9,5 @@ func _ready():
 	
 	_on_score_changed()
 
-func _on_score_changed():
+func _on_score_changed():	
 	score_label.text = "%s" % [run_stats.score]

@@ -9,6 +9,7 @@
 size = Vector2(29, 19)
 
 [node name="Plunger" type="Node2D"]
+position = Vector2(217, 56)
 script = ExtResource("1_d6oe5")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
