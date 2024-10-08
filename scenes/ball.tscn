@@ -9,12 +9,10 @@ bounce = 0.1
 [sub_resource type="CircleShape2D" id="CircleShape2D_lrnw1"]
 radius = 9.0
 
-[sub_resource type="Gradient" id="Gradient_hkl22"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_1cbgt"]
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_7oslp"]
-gradient = SubResource("Gradient_hkl22")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u6wuh"]
+gradient = SubResource("Gradient_1cbgt")
 
 [node name="Ball" type="RigidBody2D"]
 collision_layer = 2
@@ -29,5 +27,6 @@ script = ExtResource("1_rba04")
 shape = SubResource("CircleShape2D_lrnw1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.0664063, 14.5)
-texture = SubResource("GradientTexture1D_7oslp")
+position = Vector2(-3.45707e-06, 4.76837e-07)
+scale = Vector2(0.0703125, 16)
+texture = SubResource("GradientTexture1D_u6wuh")

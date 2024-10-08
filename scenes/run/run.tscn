@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://dn5h4d2gnwgce"]
+
+[ext_resource type="Script" path="res://scenes/run/run.gd" id="1_al7my"]
+[ext_resource type="PackedScene" uid="uid://fxp4dtqfu4ww" path="res://scenes/ui/score.tscn" id="2_8lead"]
+[ext_resource type="Script" path="res://scenes/run/notifier.gd" id="3_tiv60"]
+
+[sub_resource type="Animation" id="Animation_2tlnq"]
+resource_name = "text"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_tappd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_thk0m"]
+_data = {
+"RESET": SubResource("Animation_tappd"),
+"text": SubResource("Animation_2tlnq")
+}
+
+[node name="ExtremePinball" type="Node"]
+script = ExtResource("1_al7my")
+
+[node name="CurrentTable" type="Node" parent="."]
+
+[node name="BaseUI" type="CanvasLayer" parent="."]
+
+[node name="Score" parent="BaseUI" instance=ExtResource("2_8lead")]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 509.0
+offset_top = -65.5
+offset_right = 648.0
+offset_bottom = 65.5
+grow_vertical = 2
+
+[node name="Tables" type="VBoxContainer" parent="BaseUI"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -607.0
+offset_top = -78.0
+offset_right = -353.0
+offset_bottom = 78.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ProfessorTable" type="Button" parent="BaseUI/Tables"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
+focus_mode = 0
+text = "Professor Table"
+
+[node name="AnotherTable" type="Button" parent="BaseUI/Tables"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
+focus_mode = 0
+text = "Another Table"
+
+[node name="Notifier" type="Panel" parent="BaseUI"]
+offset_left = 221.0
+offset_top = 194.0
+offset_right = 546.0
+offset_bottom = 419.0
+script = ExtResource("3_tiv60")
+
+[node name="Label" type="Label" parent="BaseUI/Notifier"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "hello"
+horizontal_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BaseUI/Notifier"]
+libraries = {
+"": SubResource("AnimationLibrary_thk0m")
+}
+
+[connection signal="pressed" from="BaseUI/Tables/ProfessorTable" to="." method="_on_professor_table_pressed"]
+[connection signal="pressed" from="BaseUI/Tables/AnotherTable" to="." method="_on_another_table_pressed"]

@@ -6,6 +6,10 @@
 height = 128.0
 
 [node name="Kicker" type="RigidBody2D"]
+collision_mask = 2
+freeze = true
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("1_xg8oc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
