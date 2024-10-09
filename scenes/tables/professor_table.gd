@@ -5,14 +5,15 @@ extends Table
 var first_mission = preload("res://missions/first_mission.tres")
 var second_mission = preload("res://missions/second_mission.tres")
 
-var current_mission = first_mission
+var current_mission
 
 func _ready():
+	current_mission = first_mission.new()
 	Events.mission_completed.connect(_on_mission_completed)
 
 func kick(ball, kicker, force):
 	impact(ball)
-	add_score(KICKER_SCORE)	
+	add_score(KICKER_SCORE)
 	ball.apply_central_impulse(Vector2.from_angle(kicker.get_global_rotation()) * force)
 
 func bump(ball, bumper, force):

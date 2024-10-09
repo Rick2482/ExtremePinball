@@ -4,6 +4,7 @@ extends Resource
 @export var name: String
 @export var description: String
 @export var reward: int
+#This should be 2^(number of objectives - 1)
 @export var all_objectives: int = 0
 
 var objectives: int = 0
