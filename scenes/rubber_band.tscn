@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmguydyb3v8xx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vl7l0"]
+bounce = 0.7
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5cbgv"]
+radius = 5.0
+height = 60.0
+
+[node name="RubberBand" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_vl7l0")
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_5cbgv")

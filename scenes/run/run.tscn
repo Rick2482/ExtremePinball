@@ -4,22 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://fxp4dtqfu4ww" path="res://scenes/ui/score.tscn" id="2_8lead"]
 [ext_resource type="Script" path="res://scenes/run/notifier.gd" id="3_tiv60"]
 
-[sub_resource type="Animation" id="Animation_2tlnq"]
-resource_name = "text"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Label:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
 [sub_resource type="Animation" id="Animation_tappd"]
 length = 0.001
 tracks/0/type = "value"
@@ -35,6 +19,22 @@ tracks/0/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_2tlnq"]
+resource_name = "text"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_thk0m"]
 _data = {
 "RESET": SubResource("Animation_tappd"),
@@ -44,7 +44,7 @@ _data = {
 [node name="ExtremePinball" type="Node"]
 script = ExtResource("1_al7my")
 
-[node name="CurrentTable" type="Node" parent="."]
+[node name="CurrentView" type="Node" parent="."]
 
 [node name="BaseUI" type="CanvasLayer" parent="."]
 
@@ -97,8 +97,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "hello"
+text = "dadwdawdw"
 horizontal_alignment = 1
+autowrap_mode = 3
 visible_characters = 0
 visible_ratio = 0.0
 
@@ -106,6 +107,10 @@ visible_ratio = 0.0
 libraries = {
 "": SubResource("AnimationLibrary_thk0m")
 }
+
+[node name="Timer" type="Timer" parent="BaseUI/Notifier"]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="pressed" from="BaseUI/Tables/ProfessorTable" to="." method="_on_professor_table_pressed"]
 [connection signal="pressed" from="BaseUI/Tables/AnotherTable" to="." method="_on_another_table_pressed"]

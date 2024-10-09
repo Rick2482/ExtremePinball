@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbf72rp3kcwgx"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_t61qn"]
+a = Vector2(37, 0)
+b = Vector2(-35, 0)
+
+[node name="RollOver" type="Area2D"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_t61qn")

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck87njjfeg7gi"]
+
+[ext_resource type="Texture2D" uid="uid://dt0tep8epktgy" path="res://assets/particle.png" id="1_buvul"]
+[ext_resource type="Script" path="res://scenes/impact.gd" id="2_u4ja2"]
+
+[sub_resource type="Curve" id="Curve_ikigj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.809859, 0.736264), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Impact" type="CPUParticles2D"]
+emitting = false
+amount = 32
+lifetime = 0.25
+one_shot = true
+explosiveness = 0.7
+fixed_fps = 30
+draw_order = 1
+texture = ExtResource("1_buvul")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+scale_amount_curve = SubResource("Curve_ikigj")
+script = ExtResource("2_u4ja2")

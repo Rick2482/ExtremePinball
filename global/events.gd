@@ -1,4 +1,5 @@
 extends Node
 
-signal score_changed()
-signal show_notification(String)
+signal mission_completed
+signal score_changed
+signal game_over

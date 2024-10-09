@@ -10,7 +10,7 @@ var release_speed = 0.0
 
 func _physics_process(delta):
 	var y = body.get_position().y
-	if Input.is_action_pressed("Shoot"):
+	if Input.is_action_pressed("shoot"):
 		if y < full_extension:
 			y += (full_extension / pull_time) * delta
 			if y > full_extension:
