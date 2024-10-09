@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxuxddfdp67og"
-path="res://.godot/imported/FlipperBoardV1_Livello 1.png-07c53a27c020777bb5e6d55f0d8e4815.ctex"
+uid="uid://cwaque2slc4tq"
+path="res://.godot/imported/FlipperBoardV2_Livello 1.png-f541623865e1d5736165c585f5fd021d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/FlipperBoardV1_Livello 1.png"
-dest_files=["res://.godot/imported/FlipperBoardV1_Livello 1.png-07c53a27c020777bb5e6d55f0d8e4815.ctex"]
+source_file="res://assets/FlipperBoardV2_Livello 1.png"
+dest_files=["res://.godot/imported/FlipperBoardV2_Livello 1.png-f541623865e1d5736165c585f5fd021d.ctex"]
 
 [params]
 

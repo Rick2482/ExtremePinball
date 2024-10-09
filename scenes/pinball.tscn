@@ -1,9 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyejmhbnf4v7y"]
+[gd_scene load_steps=8 format=3 uid="uid://cyejmhbnf4v7y"]
 
 [ext_resource type="Texture2D" uid="uid://cinboyc3e28ky" path="res://assets/table.png" id="1_gs4tp"]
-
-[ext_resource type="PackedScene" uid="uid://svlowa24ii53" path="res://new_ball.tscn" id="2_lyicd"]
-
+[ext_resource type="PackedScene" uid="uid://svlowa24ii53" path="res://scenes/new_ball.tscn" id="2_lyicd"]
 [ext_resource type="PackedScene" uid="uid://cnkx07848770i" path="res://scenes/astens.tscn" id="3_xr81p"]
 [ext_resource type="PackedScene" uid="uid://ra677ah8nqns" path="res://scenes/plunger.tscn" id="4_sjw0w"]
 [ext_resource type="PackedScene" uid="uid://dremcbjx3e430" path="res://scenes/kicker.tscn" id="5_lyfqn"]
@@ -14,8 +12,6 @@ a = Vector2(198, 2)
 b = Vector2(-10, 2)
 
 [node name="Pinball" type="Node2D"]
-script = ExtResource("1_v7hqd")
-run_stats = ExtResource("2_2jr1d")
 
 [node name="Walls" type="RigidBody2D" parent="."]
 freeze = true
@@ -53,7 +49,7 @@ scale = Vector2(0.7, 0.601563)
 texture = ExtResource("1_gs4tp")
 
 [node name="NewBall" parent="." instance=ExtResource("2_lyicd")]
-position = Vector2(1256, 900)
+position = Vector2(1256, 913)
 
 [node name="Left-Astens" parent="." instance=ExtResource("3_xr81p")]
 position = Vector2(823, 1000)
@@ -71,10 +67,12 @@ position = Vector2(1257, 929)
 [node name="Left-Kicker" parent="." instance=ExtResource("5_lyfqn")]
 position = Vector2(797, 851)
 rotation = -0.447008
+freeze = true
 
 [node name="Right-Kicker" parent="." instance=ExtResource("5_lyfqn")]
 position = Vector2(1116, 851)
 rotation = -2.7118
+freeze = true
 
 [node name="Exit" type="Area2D" parent="."]
 position = Vector2(0, -7)
@@ -95,5 +93,4 @@ offset_right = 648.0
 offset_bottom = 65.5
 grow_vertical = 2
 
-[connection signal="body_entered" from="Ball" to="." method="_on_ball_body_entered"]
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://ckovt58laq36k"]
 
-[ext_resource type="Texture2D" uid="uid://dxuxddfdp67og" path="res://assets/FlipperBoardV1_Livello 1.png" id="1_5lyyc"]
+[ext_resource type="Texture2D" uid="uid://cwaque2slc4tq" path="res://assets/FlipperBoardV2_Livello 1.png" id="1_wgvu8"]
 [ext_resource type="PackedScene" uid="uid://cnkx07848770i" path="res://scenes/astens.tscn" id="2_fxlhj"]
 [ext_resource type="PackedScene" uid="uid://ra677ah8nqns" path="res://scenes/plunger.tscn" id="3_r1krc"]
-[ext_resource type="PackedScene" uid="uid://de8gitwjn1n0n" path="res://scenes/ball.tscn" id="4_svht4"]
+[ext_resource type="PackedScene" uid="uid://svlowa24ii53" path="res://scenes/new_ball.tscn" id="4_y1tlq"]
 
 [node name="PinballBoard" type="Node2D"]
 
@@ -16,7 +16,7 @@
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_5lyyc")
+texture = ExtResource("1_wgvu8")
 
 [node name="Left-Astens" parent="." instance=ExtResource("2_fxlhj")]
 position = Vector2(-160, 350)
@@ -29,8 +29,7 @@ rotation = 2.61799
 keycode = "right-astens"
 
 [node name="Plunger" parent="." instance=ExtResource("3_r1krc")]
-position = Vector2(370, 458.41)
-scale = Vector2(0.65, 0.65)
+position = Vector2(247, 437)
 
-[node name="Ball" parent="." instance=ExtResource("4_svht4")]
-position = Vector2(338, 82)
+[node name="NewBall" parent="." instance=ExtResource("4_y1tlq")]
+position = Vector2(247, 413)
