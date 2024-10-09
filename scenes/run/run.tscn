@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dn5h4d2gnwgce"]
+[gd_scene load_steps=8 format=3 uid="uid://dn5h4d2gnwgce"]
 
 [ext_resource type="Script" path="res://scenes/run/run.gd" id="1_al7my"]
 [ext_resource type="PackedScene" uid="uid://fxp4dtqfu4ww" path="res://scenes/ui/score.tscn" id="2_8lead"]
 [ext_resource type="Script" path="res://scenes/run/notifier.gd" id="3_tiv60"]
+[ext_resource type="PackedScene" uid="uid://vgk2jhj7owf5" path="res://scenes/ui/game_over_panel.tscn" id="4_sbutp"]
 
 [sub_resource type="Animation" id="Animation_tappd"]
 length = 0.001
@@ -49,6 +50,7 @@ script = ExtResource("1_al7my")
 [node name="BaseUI" type="CanvasLayer" parent="."]
 
 [node name="Score" parent="BaseUI" instance=ExtResource("2_8lead")]
+visible = false
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -111,6 +113,9 @@ libraries = {
 [node name="Timer" type="Timer" parent="BaseUI/Notifier"]
 wait_time = 5.0
 one_shot = true
+
+[node name="GameOverPanel" parent="BaseUI" instance=ExtResource("4_sbutp")]
+visible = false
 
 [connection signal="pressed" from="BaseUI/Tables/ProfessorTable" to="." method="_on_professor_table_pressed"]
 [connection signal="pressed" from="BaseUI/Tables/AnotherTable" to="." method="_on_another_table_pressed"]

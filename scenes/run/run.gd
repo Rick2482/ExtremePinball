@@ -5,6 +5,7 @@ const ANOTHER_TABLE: PackedScene = preload("res://scenes/tables/another_table.ts
 
 @onready var current_view: Node = $CurrentView
 @onready var notifier: Panel = $BaseUI/Notifier
+@onready var game_over_panel: Panel = $BaseUI/GameOverPanel
 
 var current_table: Table
 
@@ -12,10 +13,11 @@ var stats: GameStats
 var game_running: bool = false
 
 func _ready():
+	Events.ball_lost.connect(_on_ball_lost)
 	Events.game_over.connect(_on_game_over)
 
 func _process(delta):
-	if Input.is_action_pressed("spawn_ball") and !game_running:
+	if Input.is_action_pressed("start") and !game_running:
 		new_game()
 
 func new_game():
@@ -27,10 +29,11 @@ func new_game():
 	current_table.game_stats = stats
 	current_table.add_ball(current_table.BALL_SPAWN_POSITION)
 	game_running = true
+	Events.game_started.emit()
 
 func reset_all():
 	game_running = false
-	$BaseUI/Score.score_label.text = "0"
+	Events.game_ended.emit()
 
 func _change_table(scene: PackedScene) -> Node:
 	if current_view.get_child_count() > 0:
@@ -52,5 +55,16 @@ func _on_professor_table_pressed():
 func _on_another_table_pressed():
 	current_table = _change_table(ANOTHER_TABLE) as Table
 
+func _on_ball_lost():
+	if stats.balls == 1:
+		notifier.notify("Hai solo un'altra pallina")
+	else: 
+		notifier.notify("Rimangono %s palline" % stats.balls)
+	current_table.add_ball(current_table.BALL_SPAWN_POSITION)
+
 func _on_game_over():
+	notifier.notify("Hai perso, premi Invio per ripartire")
 	game_running = false
+	game_over_panel.visible = true
+	game_over_panel.label.text = "Hai fatto %s punti" % stats.score
+	Events.game_ended.emit()

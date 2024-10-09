@@ -16,6 +16,7 @@ mass = 1.5
 physics_material_override = SubResource("PhysicsMaterial_51xd4")
 freeze = true
 freeze_mode = 1
+continuous_cd = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
 position = Vector2(90, 0)

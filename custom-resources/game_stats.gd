@@ -2,6 +2,7 @@ class_name GameStats
 extends Resource
 
 @export var score := 0 : set = set_score
+@export var balls: int = 3
 
 func _ready():
 	Events.score_changed.emit()

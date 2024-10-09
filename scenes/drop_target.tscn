@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctj8jhhmvrmtg"]
+
+[ext_resource type="Script" path="res://scenes/drop_target.gd" id="1_58cip"]
+[ext_resource type="Texture2D" uid="uid://c30m0245071xg" path="res://assets/drop-target.png" id="1_rjjn6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h25on"]
+size = Vector2(34, 8)
+
+[node name="DropTarget" type="RigidBody2D"]
+collision_mask = 2
+freeze = true
+freeze_mode = 1
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_58cip")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h25on")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rjjn6")
