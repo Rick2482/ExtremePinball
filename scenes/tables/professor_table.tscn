@@ -1,61 +1,104 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyejmhbnf4v7y"]
+[gd_scene load_steps=24 format=3 uid="uid://cyejmhbnf4v7y"]
 
 [ext_resource type="Script" path="res://scenes/tables/professor_table.gd" id="1_2awdt"]
 [ext_resource type="Texture2D" uid="uid://cinboyc3e28ky" path="res://assets/table.png" id="2_y60af"]
 [ext_resource type="PackedScene" uid="uid://cnkx07848770i" path="res://scenes/astens.tscn" id="3_fao0i"]
 [ext_resource type="PackedScene" uid="uid://ra677ah8nqns" path="res://scenes/plunger.tscn" id="4_olue0"]
 [ext_resource type="PackedScene" uid="uid://dremcbjx3e430" path="res://scenes/kicker.tscn" id="5_ciuba"]
+[ext_resource type="PackedScene" uid="uid://bwauea3mmok8a" path="res://scenes/bumper.tscn" id="6_wogo6"]
+[ext_resource type="PackedScene" uid="uid://bmguydyb3v8xx" path="res://scenes/rubber_band.tscn" id="7_a8j0f"]
+[ext_resource type="PackedScene" uid="uid://dbf72rp3kcwgx" path="res://scenes/roll_over.tscn" id="8_4nkd7"]
+[ext_resource type="AudioStream" uid="uid://dcun701drwfsr" path="res://assets/sound/award.wav" id="9_8j3o1"]
+[ext_resource type="PackedScene" uid="uid://ctj8jhhmvrmtg" path="res://scenes/drop_target.tscn" id="10_dlc6y"]
+[ext_resource type="PackedScene" uid="uid://b33l0y120f72x" path="res://scenes/light.tscn" id="10_fce25"]
+[ext_resource type="PackedScene" uid="uid://d2f0vcdqndety" path="res://scenes/gate.tscn" id="11_g8oi1"]
+[ext_resource type="Texture2D" uid="uid://dqsy6twphfrgy" path="res://assets/lane-light.png" id="11_vxjtg"]
+[ext_resource type="Texture2D" uid="uid://bqwdkxntw7aap" path="res://assets/target-light.png" id="12_p754s"]
+[ext_resource type="Texture2D" uid="uid://q07ukea7bl1v" path="res://assets/x2-light.png" id="13_kk1hx"]
+[ext_resource type="Texture2D" uid="uid://d4giyodv66wi2" path="res://assets/x4-light.png" id="14_2p1vq"]
+[ext_resource type="Texture2D" uid="uid://d1ie2hbew4lxy" path="res://assets/x8-light.png" id="15_0xoay"]
+[ext_resource type="Texture2D" uid="uid://cepu8hqa0gbck" path="res://assets/special-target-hunt-light.png" id="18_eohpy"]
+[ext_resource type="Texture2D" uid="uid://g4ox0dygctfv" path="res://assets/special-lane-hunt-light.png" id="19_cqy3l"]
+[ext_resource type="Texture2D" uid="uid://dwpy6qx7pdwo8" path="res://assets/special-multiplier-light.png" id="20_8nd2i"]
+
+[sub_resource type="Gradient" id="Gradient_lh3jm"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bjcc5"]
+gradient = SubResource("Gradient_lh3jm")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_fmy54"]
 a = Vector2(198, 2)
 b = Vector2(-10, 2)
 
 [node name="ProfessorTable" type="Node2D"]
+position = Vector2(-672, 120)
 script = ExtResource("1_2awdt")
 BALL_SPAWN_POSITION = Vector2(1258, 212)
+BUMPER_SCORE = 50
+KICKER_SCORE = 200
+
+[node name="Sprite2D" type="TextureRect" parent="."]
+offset_left = 589.0
+offset_top = -204.0
+offset_right = 1394.0
+offset_bottom = 1185.0
+texture = SubResource("GradientTexture1D_bjcc5")
 
 [node name="Walls" type="RigidBody2D" parent="."]
 collision_mask = 2
 freeze = true
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
-polygon = PackedVector2Array(856, 1079, 856, 996, 695, 885, 695, 682, 746, 547, 694, 352, 684, 296, 682, 259, 686, 233, 695, 206, 713, 176, 735, 151, 755, 131, 786, 105, 787, 87, 790, 77, 796, 66, 810, 52, 831, 38, 847, 31, 884, 18, 923, 10, 956, 6, 1000, 4, 1053, 7, 1089, 12, 1122, 19, 1158, 30, 1184, 41, 1213, 58, 1228, 69, 1241, 81, 1258, 103, 1266, 120, 1271, 136, 1273, 144, 1274, 155, 1275, 173, 1271, 1079, 1300, 1079, 1300, 1, 673, 1, 672, 1079)
+polygon = PackedVector2Array(856, 1079, 856, 996, 695, 885, 695, 682, 746, 547, 694, 352, 684, 296, 682, 259, 686, 233, 695, 206, 713, 176, 734, 150, 787, 105, 787, 87, 790, 77, 796, 66, 810, 52, 831, 38, 847, 31, 884, 18, 923, 10, 956, 6, 1000, 4, 1053, 7, 1089, 12, 1122, 19, 1158, 30, 1184, 41, 1213, 58, 1228, 69, 1241, 81, 1258, 103, 1266, 120, 1271, 136, 1273, 144, 1274, 155, 1275, 173, 1271, 1079, 1300, 1079, 1300, 1, 673, 1, 672, 1079)
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Walls"]
 polygon = PackedVector2Array(1056, 1079, 1057, 997, 1220, 886, 1219, 685, 1190, 571, 1224, 462, 1178, 448, 1141, 524, 1125, 520, 1214, 229, 1217, 201, 1215, 177, 1207, 153, 1196, 134, 1174, 111, 1189, 86, 1204, 98, 1217, 112, 1229, 131, 1235, 146, 1238, 158, 1240, 171, 1240, 1079)
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Walls"]
 polygon = PackedVector2Array(795, 487, 791, 483, 732, 312, 729, 300, 728, 292, 728, 273, 736, 242, 743, 224, 755, 201, 769, 181, 785, 163, 808, 142, 839, 122, 865, 110, 891, 101, 927, 94, 957, 92, 981, 92, 1011, 94, 1047, 100, 1074, 105, 1102, 114, 1122, 123, 1141, 135, 1154, 148, 1163, 163, 1168, 176, 1170, 196, 1169, 212, 1166, 229, 1163, 244, 1147, 286, 1130, 323, 1113, 355, 1061, 336, 1087, 310, 1108, 285, 1126, 263, 1138, 242, 1143, 232, 1146, 222, 1146, 213, 1144, 205, 1139, 196, 1128, 185, 1112, 176, 1090, 166, 1061, 157, 1032, 152, 1032, 138, 1029, 127, 1019, 116, 1003, 109, 984, 106, 962, 105, 937, 107, 909, 112, 888, 117, 864, 126, 845, 135, 827, 146, 812, 158, 801, 169, 793, 178, 784, 192, 776, 209, 771, 228, 769, 241, 769, 256, 771, 274, 813, 477, 806, 485, 800, 488)
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Walls"]
 polygon = PackedVector2Array(883, 455, 922, 382, 1028, 384, 1069, 454, 1099, 391, 1090, 385, 1058, 373, 1026, 364, 960, 348, 936, 337, 931, 332, 880, 265, 857, 231, 846, 211, 854, 198, 867, 186, 882, 176, 903, 167, 925, 161, 948, 157, 970, 154, 977, 151, 980, 147, 979, 143, 974, 140, 969, 139, 934, 143, 902, 150, 876, 161, 860, 172, 847, 183, 836, 198, 829, 214, 825, 232, 825, 248, 826, 258)
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Walls"]
-polygon = PackedVector2Array(746, 879, 744, 872, 743, 860, 744, 795, 748, 788, 755, 784, 762, 784, 768, 786, 771, 789, 774, 793, 778, 797, 829, 905, 829, 912, 827, 916, 821, 919, 813, 919, 806, 918, 772, 899, 752, 886)
+polygon = PackedVector2Array(746, 879, 744, 872, 743, 860, 744, 795, 748, 788, 755, 784, 763, 785, 767, 787, 771, 789, 774, 793, 763, 799, 814, 907, 827, 901, 829, 905, 829, 912, 827, 916, 821, 919, 813, 919, 806, 918, 772, 899, 752, 886)
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Walls"]
-polygon = PackedVector2Array(1086, 916, 1091, 919, 1102, 919, 1114, 914, 1145, 896, 1165, 882, 1167, 878, 1168, 874, 1169, 869, 1169, 801, 1167, 792, 1164, 788, 1160, 785, 1153, 783, 1146, 785, 1142, 788, 1135, 797, 1114, 837, 1088, 896, 1083, 905, 1083, 912)
+polygon = PackedVector2Array(1086, 916, 1091, 919, 1102, 919, 1114, 914, 1145, 896, 1165, 882, 1167, 878, 1168, 874, 1169, 869, 1169, 801, 1167, 792, 1164, 788, 1160, 785, 1153, 783, 1146, 785, 1142, 788, 1136, 795, 1150, 802, 1099, 906, 1087, 899, 1083, 905, 1083, 912)
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="Walls"]
-polygon = PackedVector2Array(834, 82, 844, 70, 856, 63, 874, 56, 896, 50, 939, 43, 977, 40, 1028, 40, 1024, 58, 968, 56, 918, 60, 870, 70)
+polygon = PackedVector2Array(834, 82, 844, 70, 856, 63, 874, 56, 896, 50, 939, 43, 977, 40, 1028, 40, 1024, 58, 1009, 57, 988, 56, 972, 56, 946, 57, 918, 60, 894, 64, 870, 70, 853, 75)
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="Walls"]
 polygon = PackedVector2Array(1078, 45, 1072, 65, 1087, 69, 1095, 48)
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="Walls"]
 polygon = PackedVector2Array(1132, 58, 1123, 81, 1139, 88, 1149, 64)
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Walls"]
 position = Vector2(986, 540)
 scale = Vector2(0.7, 0.601563)
 texture = ExtResource("2_y60af")
+metadata/_edit_lock_ = true
 
-[node name="Left-Astens" parent="." instance=ExtResource("3_fao0i")]
+[node name="LeftAstens" parent="." instance=ExtResource("3_fao0i")]
 position = Vector2(823, 1000)
 rotation = 0.523599
 snap_angle = -50
 
-[node name="Right-Astens" parent="." instance=ExtResource("3_fao0i")]
+[node name="RightAstens" parent="." instance=ExtResource("3_fao0i")]
 position = Vector2(1094, 1000)
 rotation = 2.61799
 keycode = "right-astens"
@@ -63,14 +106,227 @@ keycode = "right-astens"
 [node name="Plunger" parent="." instance=ExtResource("4_olue0")]
 position = Vector2(1257, 929)
 
-[node name="Left-Kicker" parent="." instance=ExtResource("5_ciuba")]
-position = Vector2(792, 847)
-rotation = -0.446986
-freeze_mode = 1
+[node name="LeftKicker" parent="." instance=ExtResource("5_ciuba")]
+position = Vector2(795, 851)
+rotation = -0.446449
 
-[node name="Right-Kicker" parent="." instance=ExtResource("5_ciuba")]
-position = Vector2(1119, 851)
-rotation = -2.69459
+[node name="RightKicker" parent="." instance=ExtResource("5_ciuba")]
+position = Vector2(1118, 851)
+rotation = -2.69572
+
+[node name="Bumper" parent="." instance=ExtResource("6_wogo6")]
+position = Vector2(944, 220)
+collision_mask = 1
+
+[node name="Bumper2" parent="." instance=ExtResource("6_wogo6")]
+position = Vector2(1054, 220)
+
+[node name="Bumper3" parent="." instance=ExtResource("6_wogo6")]
+position = Vector2(999, 298)
+
+[node name="RubberBand" parent="." instance=ExtResource("7_a8j0f")]
+position = Vector2(909, 311)
+rotation = -0.665938
+
+[node name="RubberBand2" parent="." instance=ExtResource("7_a8j0f")]
+position = Vector2(873, 262)
+rotation = -0.609442
+
+[node name="RubberBand3" parent="." instance=ExtResource("7_a8j0f")]
+position = Vector2(1124, 272)
+rotation = -2.49703
+
+[node name="RubberBand4" parent="." instance=ExtResource("7_a8j0f")]
+position = Vector2(1088, 315)
+rotation = -2.4032
+
+[node name="RollOver" parent="." instance=ExtResource("8_4nkd7")]
+position = Vector2(933, 74)
+rotation = 1.37198
+
+[node name="RollOver4" parent="." instance=ExtResource("8_4nkd7")]
+position = Vector2(824, 62)
+rotation = 0.513098
+
+[node name="RollOver2" parent="." instance=ExtResource("8_4nkd7")]
+position = Vector2(963, 123)
+rotation = 1.40999
+
+[node name="RollOver3" parent="." instance=ExtResource("8_4nkd7")]
+position = Vector2(719, 850)
+rotation = -0.0132625
+
+[node name="RollOver5" parent="." instance=ExtResource("8_4nkd7")]
+position = Vector2(1194, 850)
+rotation = -0.0132625
+
+[node name="BallCapture" parent="." instance=ExtResource("8_4nkd7")]
+position = Vector2(1200, 456)
+rotation = 0.295343
+roll_over_sound = ExtResource("9_8j3o1")
+
+[node name="LeftTargets" type="Node2D" parent="."]
+
+[node name="DropTarget" parent="LeftTargets" instance=ExtResource("10_dlc6y")]
+position = Vector2(740, 584)
+rotation = -1.21286
+
+[node name="DropTarget2" parent="LeftTargets" instance=ExtResource("10_dlc6y")]
+position = Vector2(727, 618)
+rotation = -1.213
+
+[node name="DropTarget3" parent="LeftTargets" instance=ExtResource("10_dlc6y")]
+position = Vector2(714, 652)
+rotation = -1.213
+
+[node name="RightTargets" type="Node2D" parent="."]
+
+[node name="DropTarget4" parent="RightTargets" instance=ExtResource("10_dlc6y")]
+position = Vector2(1190, 594)
+rotation = 1.32172
+
+[node name="DropTarget5" parent="RightTargets" instance=ExtResource("10_dlc6y")]
+position = Vector2(1199, 629)
+rotation = 1.32121
+
+[node name="DropTarget6" parent="RightTargets" instance=ExtResource("10_dlc6y")]
+position = Vector2(1208, 664)
+rotation = 1.32172
+
+[node name="Gates" type="Node2D" parent="."]
+
+[node name="Gate" parent="Gates" instance=ExtResource("11_g8oi1")]
+position = Vector2(780, 107)
+rotation = -0.449479
+
+[node name="Gate2" parent="Gates" instance=ExtResource("11_g8oi1")]
+position = Vector2(1016, 53)
+rotation = 0.174259
+
+[node name="Gate3" parent="Gates" instance=ExtResource("11_g8oi1")]
+position = Vector2(1078, 63)
+rotation = 0.351436
+
+[node name="Gate4" parent="Gates" instance=ExtResource("11_g8oi1")]
+position = Vector2(1134, 79)
+rotation = 0.661689
+
+[node name="LaneLights" type="Node2D" parent="."]
+
+[node name="Light" parent="LaneLights" instance=ExtResource("10_fce25")]
+position = Vector2(754.146, 467.366)
+rotation = 2.76112
+scale = Vector2(0.738737, 0.664832)
+texture = ExtResource("11_vxjtg")
+
+[node name="Light2" parent="LaneLights" instance=ExtResource("10_fce25")]
+position = Vector2(841.8, 436.048)
+rotation = 2.90196
+scale = Vector2(0.766207, 0.637232)
+skew = 0.0324565
+texture = ExtResource("11_vxjtg")
+
+[node name="Light6" parent="LaneLights" instance=ExtResource("10_fce25")]
+position = Vector2(1149.18, 345.461)
+rotation = -2.8175
+scale = Vector2(0.698095, 0.644049)
+skew = 0.105044
+texture = ExtResource("11_vxjtg")
+
+[node name="Light3" parent="LaneLights" instance=ExtResource("10_fce25")]
+position = Vector2(1051.49, 51.8651)
+rotation = 0.0951201
+scale = Vector2(0.54976, 0.301783)
+skew = 0.0139235
+texture = ExtResource("11_vxjtg")
+
+[node name="Light4" parent="LaneLights" instance=ExtResource("10_fce25")]
+position = Vector2(1109.11, 63.7358)
+rotation = 0.261586
+scale = Vector2(0.523167, 0.330448)
+skew = 0.103445
+texture = ExtResource("11_vxjtg")
+
+[node name="Light5" parent="LaneLights" instance=ExtResource("10_fce25")]
+position = Vector2(1162.53, 84.9575)
+rotation = 0.528435
+scale = Vector2(0.55778, 0.31354)
+skew = 0.0989575
+texture = ExtResource("11_vxjtg")
+
+[node name="Light7" parent="LaneLights" instance=ExtResource("10_fce25")]
+position = Vector2(718.297, 839.992)
+rotation = -0.0270013
+scale = Vector2(0.740972, 0.675965)
+skew = 0.0739951
+texture = ExtResource("11_vxjtg")
+
+[node name="Light8" parent="LaneLights" instance=ExtResource("10_fce25")]
+position = Vector2(1194.39, 839.985)
+rotation = -0.0366912
+scale = Vector2(0.745355, 0.675406)
+skew = 0.0724111
+texture = ExtResource("11_vxjtg")
+
+[node name="PowerLights" type="Node2D" parent="."]
+
+[node name="Light" parent="PowerLights" instance=ExtResource("10_fce25")]
+position = Vector2(742.212, 634.319)
+rotation = -1.27309
+scale = Vector2(0.627247, 0.714136)
+skew = -0.100036
+texture = ExtResource("12_p754s")
+
+[node name="Light2" parent="PowerLights" instance=ExtResource("10_fce25")]
+position = Vector2(1171.8, 641.616)
+rotation = 1.25125
+scale = Vector2(0.6309, 0.738526)
+skew = -0.0115602
+texture = ExtResource("12_p754s")
+
+[node name="MultipliersLights" type="Node2D" parent="."]
+position = Vector2(-1, 0)
+
+[node name="LightMultiplierx2" parent="MultipliersLights" instance=ExtResource("10_fce25")]
+position = Vector2(887, 839)
+rotation = -0.230681
+scale = Vector2(0.736814, 0.666963)
+skew = 0.0344365
+texture = ExtResource("13_kk1hx")
+
+[node name="LightMultiplierx4" parent="MultipliersLights" instance=ExtResource("10_fce25")]
+position = Vector2(962, 830)
+rotation = 0.0145172
+scale = Vector2(0.726227, 0.678475)
+skew = 0.0803798
+texture = ExtResource("14_2p1vq")
+
+[node name="LightMultiplierx8" parent="MultipliersLights" instance=ExtResource("10_fce25")]
+position = Vector2(1035, 840)
+rotation = 0.254059
+scale = Vector2(0.710038, 0.695399)
+skew = 0.103137
+texture = ExtResource("15_0xoay")
+
+[node name="SpecialLights" type="Node2D" parent="."]
+
+[node name="Light" parent="SpecialLights" instance=ExtResource("10_fce25")]
+position = Vector2(1176, 521)
+rotation = 0.29401
+scale = Vector2(0.459502, 0.398357)
+texture = ExtResource("18_eohpy")
+
+[node name="Light2" parent="SpecialLights" instance=ExtResource("10_fce25")]
+position = Vector2(1186, 496)
+rotation = 0.310393
+scale = Vector2(0.459502, 0.398357)
+texture = ExtResource("19_cqy3l")
+
+[node name="Light3" parent="SpecialLights" instance=ExtResource("10_fce25")]
+position = Vector2(1196, 470)
+rotation = 0.31166
+scale = Vector2(0.459502, 0.398356)
+texture = ExtResource("20_8nd2i")
 
 [node name="Exit" type="Area2D" parent="."]
 position = Vector2(0, -1)
@@ -81,6 +337,21 @@ collision_mask = 2
 position = Vector2(862, 1077)
 shape = SubResource("SegmentShape2D_fmy54")
 
-[connection signal="body_entered" from="Left-Kicker" to="." method="_on_left_kicker_body_entered"]
-[connection signal="body_entered" from="Right-Kicker" to="." method="_on_right_kicker_body_entered"]
+[connection signal="body_entered" from="LeftKicker" to="." method="_on_left_kicker_body_entered"]
+[connection signal="body_entered" from="RightKicker" to="." method="_on_right_kicker_body_entered"]
+[connection signal="body_entered" from="Bumper" to="." method="_on_bumper_body_entered"]
+[connection signal="body_entered" from="Bumper2" to="." method="_on_bumper_2_body_entered"]
+[connection signal="body_entered" from="Bumper3" to="." method="_on_bumper_3_body_entered"]
+[connection signal="body_entered" from="RollOver" to="." method="_on_roll_over_body_entered"]
+[connection signal="body_entered" from="RollOver4" to="." method="_on_roll_over_4_body_entered"]
+[connection signal="body_entered" from="RollOver2" to="." method="_on_roll_over_2_body_entered"]
+[connection signal="body_entered" from="RollOver3" to="." method="_on_roll_over_3_body_entered"]
+[connection signal="body_entered" from="RollOver5" to="." method="_on_roll_over_5_body_entered"]
+[connection signal="body_entered" from="BallCapture" to="." method="_on_ball_capture_body_entered"]
+[connection signal="body_entered" from="LeftTargets/DropTarget" to="." method="_on_drop_target_body_entered"]
+[connection signal="body_entered" from="LeftTargets/DropTarget2" to="." method="_on_drop_target_2_body_entered"]
+[connection signal="body_entered" from="LeftTargets/DropTarget3" to="." method="_on_drop_target_3_body_entered"]
+[connection signal="body_entered" from="RightTargets/DropTarget4" to="." method="_on_drop_target_4_body_entered"]
+[connection signal="body_entered" from="RightTargets/DropTarget5" to="." method="_on_drop_target_5_body_entered"]
+[connection signal="body_entered" from="RightTargets/DropTarget6" to="." method="_on_drop_target_6_body_entered"]
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]

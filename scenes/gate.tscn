@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2f0vcdqndety"]
+
+[ext_resource type="Script" path="res://scenes/gate.gd" id="1_77t3x"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sfv3v"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_l5mdw"]
+b = Vector2(69, 0)
+
+[node name="Gate" type="StaticBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_sfv3v")
+script = ExtResource("1_77t3x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_l5mdw")
+disabled = true

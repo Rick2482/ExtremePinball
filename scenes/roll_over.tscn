@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbf72rp3kcwgx"]
+
+[ext_resource type="Script" path="res://scenes/roll_over.gd" id="1_whtok"]
+[ext_resource type="AudioStream" uid="uid://byhhteb403ib8" path="res://assets/sound/lane.wav" id="2_fw7ft"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_t61qn"]
+a = Vector2(25, 0.0454772)
+b = Vector2(-24, -0.0436581)
+
+[node name="RollOver" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_whtok")
+roll_over_sound = ExtResource("2_fw7ft")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -0.00181909
+shape = SubResource("SegmentShape2D_t61qn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,64 +1,48 @@
-[gd_scene load_steps=7 format=3 uid="uid://dn5h4d2gnwgce"]
+[gd_scene load_steps=12 format=3 uid="uid://dn5h4d2gnwgce"]
 
 [ext_resource type="Script" path="res://scenes/run/run.gd" id="1_al7my"]
-[ext_resource type="PackedScene" uid="uid://fxp4dtqfu4ww" path="res://scenes/ui/score.tscn" id="2_8lead"]
-[ext_resource type="Script" path="res://scenes/run/notifier.gd" id="3_tiv60"]
+[ext_resource type="FontFile" uid="uid://bjw38exyqpitw" path="res://assets/fonts/OpenSans_Condensed-Bold.ttf" id="7_v3nw3"]
+[ext_resource type="Texture2D" uid="uid://laqeykknmq8y" path="res://assets/ExampleSprite.png" id="8_b6x23"]
 
-[sub_resource type="Animation" id="Animation_2tlnq"]
-resource_name = "text"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Label:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
+[sub_resource type="LabelSettings" id="LabelSettings_d1pg3"]
+font = ExtResource("7_v3nw3")
+font_size = 36
+font_color = Color(1, 1, 0.654902, 1)
 
-[sub_resource type="Animation" id="Animation_tappd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Label:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
+[sub_resource type="LabelSettings" id="LabelSettings_folnp"]
+font = ExtResource("7_v3nw3")
+font_size = 35
+font_color = Color(1, 1, 0.164706, 1)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_thk0m"]
-_data = {
-"RESET": SubResource("Animation_tappd"),
-"text": SubResource("Animation_2tlnq")
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qniv"]
+size = Vector2(315, 800)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vr6m"]
+size = Vector2(315, 800)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bju8"]
+size = Vector2(150, 150)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yxr5y"]
+font = ExtResource("7_v3nw3")
+font_size = 40
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shepw"]
+size = Vector2(100, 50)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ow6p5"]
+font = ExtResource("7_v3nw3")
+font_size = 20
 
 [node name="ExtremePinball" type="Node"]
 script = ExtResource("1_al7my")
 
-[node name="CurrentTable" type="Node" parent="."]
+[node name="CurrentView" type="Node" parent="."]
 
 [node name="BaseUI" type="CanvasLayer" parent="."]
 
-[node name="Score" parent="BaseUI" instance=ExtResource("2_8lead")]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 509.0
-offset_top = -65.5
-offset_right = 648.0
-offset_bottom = 65.5
-grow_vertical = 2
-
 [node name="Tables" type="VBoxContainer" parent="BaseUI"]
+visible = false
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -83,29 +67,148 @@ layout_mode = 2
 focus_mode = 0
 text = "Another Table"
 
-[node name="Notifier" type="Panel" parent="BaseUI"]
-offset_left = 221.0
-offset_top = 194.0
-offset_right = 546.0
-offset_bottom = 419.0
-script = ExtResource("3_tiv60")
+[node name="ScoreTextLabel" type="Label" parent="BaseUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.5
+offset_right = 60.5
+offset_bottom = 67.0
+grow_horizontal = 2
+text = "Score:"
+label_settings = SubResource("LabelSettings_d1pg3")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Label" type="Label" parent="BaseUI/Notifier"]
-layout_mode = 1
-anchors_preset = 15
+[node name="ScoreLabel" type="Label" parent="BaseUI"]
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
+offset_top = 57.0
+offset_bottom = 106.0
+grow_horizontal = 2
+text = "50"
+label_settings = SubResource("LabelSettings_folnp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftAstenButton" type="TouchScreenButton" parent="."]
+position = Vector2(158, 628)
+shape = SubResource("RectangleShape2D_4qniv")
+action = "left-astens"
+
+[node name="RightAstenButton" type="TouchScreenButton" parent="."]
+position = Vector2(473, 628)
+shape = SubResource("RectangleShape2D_0vr6m")
+action = "right-astens"
+
+[node name="LaunchBallButton" type="TouchScreenButton" parent="."]
+position = Vector2(555, 1122)
+shape = SubResource("RectangleShape2D_3bju8")
+action = "shoot"
+
+[node name="GameOverPanel" type="NinePatchRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -231.5
+offset_top = -110.0
+offset_right = 231.5
+offset_bottom = 110.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "hello"
-horizontal_alignment = 1
-visible_characters = 0
-visible_ratio = 0.0
+texture = ExtResource("8_b6x23")
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BaseUI/Notifier"]
-libraries = {
-"": SubResource("AnimationLibrary_thk0m")
-}
+[node name="Label" type="Label" parent="GameOverPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.0
+offset_top = 28.0
+offset_right = 78.0
+offset_bottom = 83.0
+grow_horizontal = 2
+text = "Hai perso!"
+label_settings = SubResource("LabelSettings_yxr5y")
+
+[node name="QuitButton" type="TouchScreenButton" parent="GameOverPanel"]
+position = Vector2(157.5, 144)
+shape = SubResource("RectangleShape2D_shepw")
+
+[node name="NinePatchRect3" type="TextureRect" parent="GameOverPanel/QuitButton"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -19.0
+offset_right = 51.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Label" type="Label" parent="GameOverPanel/QuitButton"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Esci"
+label_settings = SubResource("LabelSettings_ow6p5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryButton" type="TouchScreenButton" parent="GameOverPanel"]
+position = Vector2(313.5, 144)
+shape = SubResource("RectangleShape2D_shepw")
+
+[node name="NinePatchRect2" type="TextureRect" parent="GameOverPanel/RetryButton"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -19.0
+offset_right = 51.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Label" type="Label" parent="GameOverPanel/RetryButton"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Riprova"
+label_settings = SubResource("LabelSettings_ow6p5")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="BaseUI/Tables/ProfessorTable" to="." method="_on_professor_table_pressed"]
 [connection signal="pressed" from="BaseUI/Tables/AnotherTable" to="." method="_on_another_table_pressed"]
+[connection signal="pressed" from="GameOverPanel/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="GameOverPanel/RetryButton" to="." method="_on_retry_button_pressed"]

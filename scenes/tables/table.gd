@@ -1,6 +1,8 @@
 class_name Table
 extends Node2D
 
+signal initialization_finished
+
 @export var BALL_SPAWN_POSITION: Vector2
 
 @export_group("Score points")
@@ -25,9 +27,13 @@ const NUDGE_VIEW_OFFSET = 10
 const FORCE_BUMPER = 700.0
 const FORCE_KICKER = 1200.0
 
-var run_stats: RunStats
+var game_stats: GameStats
 
 const BALL_SCENE: PackedScene = preload("res://scenes/ball.tscn")
+const IMPACT_SCENE: PackedScene = preload("res://scenes/impact.tscn")
+
+func initialize():
+	pass
 
 func add_ball(pos: Vector2):
 	var new_ball = BALL_SCENE.instantiate()
@@ -35,4 +41,9 @@ func add_ball(pos: Vector2):
 	call_deferred("add_child", new_ball)
 
 func add_score(points):
-	run_stats.score += points
+	game_stats.score += game_stats.multiplier * points
+
+func impact(ball):
+	var new_impact = IMPACT_SCENE.instantiate()
+	new_impact.global_position = ball.global_position
+	call_deferred("add_child", new_impact)

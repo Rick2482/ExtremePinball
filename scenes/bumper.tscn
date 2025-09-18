@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwauea3mmok8a"]
+
+[ext_resource type="Script" path="res://scenes/bumper.gd" id="1_gkxwg"]
+[ext_resource type="AudioStream" uid="uid://kxmuadbnhsdh" path="res://assets/sound/bumper.wav" id="2_im6rp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k5aap"]
+radius = 28.0
+
+[node name="Bumper" type="RigidBody2D"]
+collision_mask = 2
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_gkxwg")
+bumper_sound = ExtResource("2_im6rp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k5aap")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FirstMission" load_steps=2 format=3 uid="uid://dwcfqqfei3fji"]
+
+[ext_resource type="Script" path="res://missions/first_mission.gd" id="1_8vngh"]
+
+[resource]
+script = ExtResource("1_8vngh")
+name = ""
+description = ""
+reward = 1000
+all_objectives = 7

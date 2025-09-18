@@ -1,16 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://dremcbjx3e430"]
+[gd_scene load_steps=4 format=3 uid="uid://dremcbjx3e430"]
 
 [ext_resource type="Script" path="res://scenes/kicker.gd" id="1_xg8oc"]
+[ext_resource type="AudioStream" uid="uid://g5vcdbyy7746" path="res://assets/sound/kicker.wav" id="2_i3qap"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y350i"]
-height = 128.0
+radius = 8.0
+height = 126.0
 
 [node name="Kicker" type="RigidBody2D"]
 collision_mask = 2
 freeze = true
-max_contacts_reported = 1
+freeze_mode = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_xg8oc")
+kicker_sound = ExtResource("2_i3qap")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_y350i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
