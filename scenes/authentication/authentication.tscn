@@ -1,0 +1,346 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgsupojb0w215"]
+
+[ext_resource type="Script" path="res://scenes/authentication/authentication.gd" id="1_ratfk"]
+[ext_resource type="VideoStream" path="res://assets/ExtremePinball.ogv" id="3_vcyor"]
+[ext_resource type="Texture2D" uid="uid://byh61fqo37k5i" path="res://assets/01 Border 02.png" id="4_8nwuw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsji6"]
+atlas = ExtResource("4_8nwuw")
+region = Rect2(0.482344, 62.9784, 63.4901, 66.3679)
+
+[sub_resource type="LabelSettings" id="LabelSettings_130xf"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_baou7"]
+font_size = 35
+font_color = Color(0.823529, 1, 1, 1)
+outline_size = 2
+outline_color = Color(1, 0, 0, 1)
+
+[node name="Authentication" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ratfk")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -40.0
+offset_right = 45.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stream = ExtResource("3_vcyor")
+autoplay = true
+loop = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.705882)
+
+[node name="LoginPanel" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -246.0
+offset_top = -149.5
+offset_right = 246.0
+offset_bottom = 149.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_rsji6")
+region_rect = Rect2(-0.0577736, -0.192387, 63.0578, 66.1924)
+patch_margin_left = 15
+patch_margin_top = 19
+patch_margin_right = 18
+patch_margin_bottom = 18
+
+[node name="MarginContainer" type="MarginContainer" parent="LoginPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoginPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="LoginPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LoginLabel" type="Label" parent="LoginPanel/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Login"
+label_settings = SubResource("LabelSettings_130xf")
+
+[node name="StatusLabel" type="Label" parent="LoginPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Email" type="HBoxContainer" parent="LoginPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="EmailLabel" type="Label" parent="LoginPanel/MarginContainer/VBoxContainer/Email"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Email:"
+
+[node name="LoginEmailLineEdit" type="LineEdit" parent="LoginPanel/MarginContainer/VBoxContainer/Email"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Password" type="HBoxContainer" parent="LoginPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PasswordLabel" type="Label" parent="LoginPanel/MarginContainer/VBoxContainer/Password"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Password:"
+
+[node name="LoginPasswordLineEdit" type="LineEdit" parent="LoginPanel/MarginContainer/VBoxContainer/Password"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+secret = true
+
+[node name="Buttons" type="HBoxContainer" parent="LoginPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="LoginButton" type="Button" parent="LoginPanel/MarginContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "Login"
+
+[node name="RegisterButton" type="Button" parent="LoginPanel/MarginContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "Register"
+
+[node name="RegisterPanel" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -246.0
+offset_top = -195.5
+offset_right = 246.0
+offset_bottom = 195.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_rsji6")
+region_rect = Rect2(-0.0577736, -0.192387, 63.0578, 66.1924)
+patch_margin_left = 15
+patch_margin_top = 19
+patch_margin_right = 18
+patch_margin_bottom = 18
+
+[node name="MarginContainer" type="MarginContainer" parent="RegisterPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RegisterPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="RegisterPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LoginLabel" type="Label" parent="RegisterPanel/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Register"
+label_settings = SubResource("LabelSettings_130xf")
+
+[node name="StatusLabel" type="Label" parent="RegisterPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Username" type="HBoxContainer" parent="RegisterPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="UsernameLabel" type="Label" parent="RegisterPanel/MarginContainer/VBoxContainer/Username"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Username:"
+
+[node name="RegisterUsernameLineEdit" type="LineEdit" parent="RegisterPanel/MarginContainer/VBoxContainer/Username"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Email" type="HBoxContainer" parent="RegisterPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="EmailLabel" type="Label" parent="RegisterPanel/MarginContainer/VBoxContainer/Email"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Email:"
+
+[node name="RegisterEmailLineEdit" type="LineEdit" parent="RegisterPanel/MarginContainer/VBoxContainer/Email"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Password" type="HBoxContainer" parent="RegisterPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PasswordLabel" type="Label" parent="RegisterPanel/MarginContainer/VBoxContainer/Password"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Password:"
+
+[node name="RegisterPasswordLineEdit" type="LineEdit" parent="RegisterPanel/MarginContainer/VBoxContainer/Password"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+secret = true
+
+[node name="RepeatPassword" type="HBoxContainer" parent="RegisterPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PasswordLabel" type="Label" parent="RegisterPanel/MarginContainer/VBoxContainer/RepeatPassword"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Password:"
+
+[node name="RegisterRepeatPasswordLineEdit" type="LineEdit" parent="RegisterPanel/MarginContainer/VBoxContainer/RepeatPassword"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+secret = true
+
+[node name="Buttons" type="HBoxContainer" parent="RegisterPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="SignUpButton" type="Button" parent="RegisterPanel/MarginContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "Register"
+
+[node name="GoToLoginButton" type="Button" parent="RegisterPanel/MarginContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "Login"
+
+[node name="MainMenuPanel" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -255.0
+offset_top = -142.0
+offset_right = 256.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_rsji6")
+region_rect = Rect2(-0.0577736, -0.192387, 63.0578, 66.1924)
+patch_margin_left = 15
+patch_margin_top = 19
+patch_margin_right = 18
+patch_margin_bottom = 18
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MainMenuPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GameName" type="Label" parent="MainMenuPanel/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Extreme Pinball"
+label_settings = SubResource("LabelSettings_baou7")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 30
+
+[node name="Buttons" type="VBoxContainer" parent="MainMenuPanel/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="MainMenuPanel/MarginContainer/VBoxContainer/MarginContainer/Buttons"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="MainMenuPanel/MarginContainer/VBoxContainer/MarginContainer/Buttons"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="LoginPanel/MarginContainer/VBoxContainer/Buttons/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="LoginPanel/MarginContainer/VBoxContainer/Buttons/RegisterButton" to="." method="_on_register_button_pressed"]
+[connection signal="pressed" from="RegisterPanel/MarginContainer/VBoxContainer/Buttons/SignUpButton" to="." method="_on_signup_button_pressed"]
+[connection signal="pressed" from="RegisterPanel/MarginContainer/VBoxContainer/Buttons/GoToLoginButton" to="." method="_on_go_to_login_button_pressed"]
+[connection signal="pressed" from="MainMenuPanel/MarginContainer/VBoxContainer/MarginContainer/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainMenuPanel/MarginContainer/VBoxContainer/MarginContainer/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_8vngh")
+name = ""
+description = ""
 reward = 1000
-objectives = 0
-all_objectives = 3
+all_objectives = 7

@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var asten_sound: AudioStream
 @export var keycode = "left-astens"
 
 @export var snap_time = 0.05
@@ -8,6 +9,8 @@ extends Node2D
 var intermediate_time = 0.0
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed(keycode):
+		SFXPlayer.play(asten_sound)
 	if Input.is_action_pressed(keycode):
 		if intermediate_time < snap_time:
 			intermediate_time += delta

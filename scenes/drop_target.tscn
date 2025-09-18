@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctj8jhhmvrmtg"]
+[gd_scene load_steps=5 format=3 uid="uid://ctj8jhhmvrmtg"]
 
 [ext_resource type="Script" path="res://scenes/drop_target.gd" id="1_58cip"]
 [ext_resource type="Texture2D" uid="uid://c30m0245071xg" path="res://assets/drop-target.png" id="1_rjjn6"]
+[ext_resource type="AudioStream" uid="uid://csyb2lfvbynph" path="res://assets/sound/target.wav" id="2_yajiy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h25on"]
 size = Vector2(34, 8)
@@ -10,9 +11,10 @@ size = Vector2(34, 8)
 collision_mask = 2
 freeze = true
 freeze_mode = 1
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_58cip")
+drop_target_sound = ExtResource("2_yajiy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_h25on")

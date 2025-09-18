@@ -4,8 +4,7 @@ const PROFESSOR_TABLE: PackedScene = preload("res://scenes/tables/professor_tabl
 const ANOTHER_TABLE: PackedScene = preload("res://scenes/tables/another_table.tscn")
 
 @onready var current_view: Node = $CurrentView
-@onready var notifier: Panel = $BaseUI/Notifier
-@onready var game_over_panel: Panel = $BaseUI/GameOverPanel
+@onready var game_over_panel: NinePatchRect = $GameOverPanel
 
 var current_table: Table
 
@@ -13,18 +12,22 @@ var stats: GameStats
 var game_running: bool = false
 
 func _ready():
+	Events.score_changed.connect(_on_score_changed)
 	Events.ball_lost.connect(_on_ball_lost)
 	Events.game_over.connect(_on_game_over)
+	
+	current_table = _change_table(PROFESSOR_TABLE) as Table
+	new_game()
 
 func _process(delta):
 	if Input.is_action_pressed("start") and !game_running:
 		new_game()
 
 func new_game():
+	current_table.initialize()
+	
 	stats = GameStats.new()
-	$BaseUI/Score.game_stats = stats
 	if not current_table:
-		notifier.notify("Devi selezionare un tavolo per poter giocare!")
 		return
 	current_table.game_stats = stats
 	current_table.add_ball(current_table.BALL_SPAWN_POSITION)
@@ -45,7 +48,6 @@ func _change_table(scene: PackedScene) -> Node:
 	get_tree().paused = false
 	var new_table = scene.instantiate()
 	current_view.add_child(new_table)
-	notifier.notify("Premi Invio per Iniziare")
 	
 	return new_table
 
@@ -55,16 +57,30 @@ func _on_professor_table_pressed():
 func _on_another_table_pressed():
 	current_table = _change_table(ANOTHER_TABLE) as Table
 
+func _on_score_changed():
+	$BaseUI/ScoreLabel.text = "%s" % [stats.score]
+
 func _on_ball_lost():
-	if stats.balls == 1:
-		notifier.notify("Hai solo un'altra pallina")
-	else: 
-		notifier.notify("Rimangono %s palline" % stats.balls)
 	current_table.add_ball(current_table.BALL_SPAWN_POSITION)
+	stats.multiplier = 1
+	current_table.light_multiplierx2.switch_off()
+	current_table.light_multiplierx4.switch_off()
+	current_table.light_multiplierx8.switch_off()
 
 func _on_game_over():
-	notifier.notify("Hai perso, premi Invio per ripartire")
 	game_running = false
 	game_over_panel.visible = true
-	game_over_panel.label.text = "Hai fatto %s punti" % stats.score
+	$LeftAstenButton.visible = false
+	$RightAstenButton.visible = false
 	Events.game_ended.emit()
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
+
+func _on_retry_button_pressed() -> void:
+	stats.score = 0
+	stats.balls = 3
+	$LeftAstenButton.visible = true
+	$RightAstenButton.visible = true
+	current_table.add_ball(current_table.BALL_SPAWN_POSITION)
+	game_over_panel.visible = false
